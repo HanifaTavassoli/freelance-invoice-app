@@ -1,0 +1,28 @@
+{
+  "dependencies": {
+    "bootstrap": "^5.3.7"
+  },
+  "devDependencies": {
+    "sass": "^1.90.0"
+  },
+  "scripts": {
+    "build-css": "sass sass/main.scss css/main.css",
+    "watch-css": "sass --watch sass/main.scss:css/main.css"
+  },
+  "name": "freelance-invoice-app",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/HanifaTavassoli/freelance-invoice-app.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/HanifaTavassoli/freelance-invoice-app/issues"
+  },
+  "homepage": "https://github.com/HanifaTavassoli/freelance-invoice-app#readme"
+}

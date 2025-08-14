@@ -1,0 +1,9 @@
+// Import Bootstrap's functions and variables first
+@import "../node_modules/bootstrap/scss/functions";
+@import "../node_modules/bootstrap/scss/variables";
+@import "../node_modules/bootstrap/scss/mixins";
+// You can override Bootstrap's default variables here before importing the rest of Bootstrap
+// $primary: #ff5733; // Example customization
+
+// Import the rest of Bootstrap
+@import "../node_modules/bootstrap/scss/bootstrap";
