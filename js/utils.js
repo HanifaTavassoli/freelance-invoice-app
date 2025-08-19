@@ -60,3 +60,15 @@ function createInvoiceRow(invoice) {
 
   return row;
 }
+
+function generateUniqueId() {
+  return Date.now();
+}
+
+export {
+  saveToLocalStorage,
+  renderTableRows,
+  createClientRow,
+  createInvoiceRow,
+  generateUniqueId,
+};
