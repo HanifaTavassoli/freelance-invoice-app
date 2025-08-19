@@ -65,27 +65,44 @@ window.editInvoice = function (id) {
     invoiceToEdit.description;
   document.getElementById("invoice-amount").value = invoiceToEdit.amount;
   document.getElementById("invoice-date").value = invoiceToEdit.date;
-};
 
-const submitButton = invoiceForm.querySelector('button[type="submit"]');
-submitButton.textContent = "Update Invoice";
+  const submitButton = invoiceForm.querySelector('button[type="submit"]');
+  submitButton.textContent = "Update Invoice";
 
-invoiceForm.onsubmit = function (e) {
-  e.preventDefault();
+  invoiceForm.onsubmit = function (e) {
+    e.preventDefault();
 
-  const updatedClientId = document.getElementById("invoice-client").value;
-  const updatedServiceTitle = document
-    .getElementById("invoice-service")
-    .value.trim();
-  const updatedDescription = document
-    .getElementById("invoice-description")
-    .value.trim();
-  const updatedAmount = parseFloat(
-    document.getElementById("invoice-amount").value.trim()
-  );
-  const updatedDate = document.getElementById("invoice-date").value.trim();
+    const updatedClientId = document.getElementById("invoice-client").value;
+    const updatedServiceTitle = document
+      .getElementById("invoice-service")
+      .value.trim();
+    const updatedDescription = document
+      .getElementById("invoice-description")
+      .value.trim();
+    const updatedAmount = parseFloat(
+      document.getElementById("invoice-amount").value.trim()
+    );
+    const updatedDate = document.getElementById("invoice-date").value.trim();
 
-  const updatedClient = clients.find(
-    (client) => client.id === parseInt(updatedClientId)
-  );
+    const updatedClient = clients.find(
+      (client) => client.id === parseInt(updatedClientId)
+    );
+  };
+
+  invoiceToEdit.client = updatedClient;
+  invoiceToEdit.serviceTitle = updatedServiceTitle;
+  invoiceToEdit.description = updatedDescription;
+  invoiceToEdit.amount = updatedAmount;
+  invoiceToEdit.date = updatedDate;
+
+  invoices = invoices.filter((invoice) => {
+    return (
+      invoice.client &&
+      invoice.serviceTitle !== "" &&
+      !isNaN(invoice.amount) &&
+      invoice.amount !== "" &&
+      invoice.amount !== 0 &&
+      invoice.date !== ""
+    );
+  });
 };
