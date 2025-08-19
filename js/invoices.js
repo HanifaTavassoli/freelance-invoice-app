@@ -69,3 +69,23 @@ window.editInvoice = function (id) {
 
 const submitButton = invoiceForm.querySelector('button[type="submit"]');
 submitButton.textContent = "Update Invoice";
+
+invoiceForm.onsubmit = function (e) {
+  e.preventDefault();
+
+  const updatedClientId = document.getElementById("invoice-client").value;
+  const updatedServiceTitle = document
+    .getElementById("invoice-service")
+    .value.trim();
+  const updatedDescription = document
+    .getElementById("invoice-description")
+    .value.trim();
+  const updatedAmount = parseFloat(
+    document.getElementById("invoice-amount").value.trim()
+  );
+  const updatedDate = document.getElementById("invoice-date").value.trim();
+
+  const updatedClient = clients.find(
+    (client) => client.id === parseInt(updatedClientId)
+  );
+};
