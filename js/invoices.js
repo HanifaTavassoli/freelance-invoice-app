@@ -87,29 +87,41 @@ window.editInvoice = function (id) {
     const updatedClient = clients.find(
       (client) => client.id === parseInt(updatedClientId)
     );
+
+    invoiceToEdit.client = updatedClient;
+    invoiceToEdit.serviceTitle = updatedServiceTitle;
+    invoiceToEdit.description = updatedDescription;
+    invoiceToEdit.amount = updatedAmount;
+    invoiceToEdit.date = updatedDate;
+
+    invoices = invoices.filter((invoice) => {
+      return (
+        invoice.client &&
+        invoice.serviceTitle !== "" &&
+        !isNaN(invoice.amount) &&
+        invoice.amount !== "" &&
+        invoice.amount !== 0 &&
+        invoice.date !== ""
+      );
+    });
+
+    saveToLocalStorage("invoices", invoices);
+
+    invoiceForm.reset();
+    submitButton.textContent = "Add Invoice";
+
+    renderInvoices();
   };
+};
 
-  invoiceToEdit.client = updatedClient;
-  invoiceToEdit.serviceTitle = updatedServiceTitle;
-  invoiceToEdit.description = updatedDescription;
-  invoiceToEdit.amount = updatedAmount;
-  invoiceToEdit.date = updatedDate;
+window.markAsPaid = function (id) {
+  const invoice = invoices.find((i) => i.id === id);
 
-  invoices = invoices.filter((invoice) => {
-    return (
-      invoice.client &&
-      invoice.serviceTitle !== "" &&
-      !isNaN(invoice.amount) &&
-      invoice.amount !== "" &&
-      invoice.amount !== 0 &&
-      invoice.date !== ""
-    );
-  });
+  if (!invoice) return;
+
+  invoice.paid = !invoice.paid;
 
   saveToLocalStorage("invoices", invoices);
-
-  invoiceForm.reset();
-  submitButton.textContent = "Add Invoice";
 
   renderInvoices();
 };
