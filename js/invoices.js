@@ -51,3 +51,18 @@ invoiceForm.addEventListener("submit", function (e) {
 
   renderInvoices();
 });
+
+window.editInvoice = function (id) {
+  const invoiceToEdit = invoices.find((invoice) => invoice.id === id);
+  if (!invoiceToEdit) {
+    alert("Invoice not found!");
+    return;
+  }
+
+  document.getElementById("invoice-client").value = invoiceToEdit.client.id;
+  document.getElementById("invoice-service").value = invoiceToEdit.serviceTitle;
+  document.getElementById("invoice-description").value =
+    invoiceToEdit.description;
+  document.getElementById("invoice-amount").value = invoiceToEdit.amount;
+  document.getElementById("invoice-date").value = invoiceToEdit.date;
+};
