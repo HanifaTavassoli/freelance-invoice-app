@@ -1,0 +1,151 @@
+import {
+  saveToLocalStorage,
+  renderTableRows,
+  createInvoiceRow,
+  generateUniqueId,
+} from "./utils.js";
+
+let invoices = JSON.parse(localStorage.getItem("invoices")) || [];
+let clients = JSON.parse(localStorage.getItem("clients")) || [];
+
+const invoiceForm = document.getElementById("invoice-form");
+const invoiceList = document
+  .getElementById("invoice-list")
+  .getElementsByTagName("tbody")[0];
+const clientSelect = document.getElementById("invoice-client");
+
+function renderInvoices() {
+  renderTableRows(invoices, invoiceList, createInvoiceRow);
+}
+
+invoiceForm.addEventListener("submit", function (e) {
+  e.preventDefault();
+
+  const clientId = clientSelect.value;
+  const serviceTitle = document.getElementById("invoice-service").value.trim();
+  const description = document
+    .getElementById("invoice-description")
+    .value.trim();
+  const amount = parseFloat(
+    document.getElementById("invoice-amount").value.trim()
+  );
+  const date = document.getElementById("invoice-date").value.trim();
+
+  const client = clients.find((c) => c.id === parseInt(clientId));
+
+  const newInvoice = {
+    id: generateUniqueId(),
+    client,
+    serviceTitle,
+    description,
+    amount,
+    date,
+    paid: false,
+  };
+
+  invoices.push(newInvoice);
+
+  saveToLocalStorage("invoices", invoices);
+
+  invoiceForm.reset();
+
+  renderInvoices();
+});
+
+window.editInvoice = function (id) {
+  const invoiceToEdit = invoices.find((invoice) => invoice.id === id);
+  if (!invoiceToEdit) {
+    alert("Invoice not found!");
+    return;
+  }
+
+  document.getElementById("invoice-client").value = invoiceToEdit.client.id;
+  document.getElementById("invoice-service").value = invoiceToEdit.serviceTitle;
+  document.getElementById("invoice-description").value =
+    invoiceToEdit.description;
+  document.getElementById("invoice-amount").value = invoiceToEdit.amount;
+  document.getElementById("invoice-date").value = invoiceToEdit.date;
+
+  const submitButton = invoiceForm.querySelector('button[type="submit"]');
+  submitButton.textContent = "Update Invoice";
+
+  invoiceForm.onsubmit = function (e) {
+    e.preventDefault();
+
+    const updatedClientId = document.getElementById("invoice-client").value;
+    const updatedServiceTitle = document
+      .getElementById("invoice-service")
+      .value.trim();
+    const updatedDescription = document
+      .getElementById("invoice-description")
+      .value.trim();
+    const updatedAmount = parseFloat(
+      document.getElementById("invoice-amount").value.trim()
+    );
+    const updatedDate = document.getElementById("invoice-date").value.trim();
+
+    const updatedClient = clients.find(
+      (client) => client.id === parseInt(updatedClientId)
+    );
+
+    invoiceToEdit.client = updatedClient;
+    invoiceToEdit.serviceTitle = updatedServiceTitle;
+    invoiceToEdit.description = updatedDescription;
+    invoiceToEdit.amount = updatedAmount;
+    invoiceToEdit.date = updatedDate;
+
+    invoices = invoices.filter((invoice) => {
+      return (
+        invoice.client &&
+        invoice.serviceTitle !== "" &&
+        !isNaN(invoice.amount) &&
+        invoice.amount !== "" &&
+        invoice.amount !== 0 &&
+        invoice.date !== ""
+      );
+    });
+
+    saveToLocalStorage("invoices", invoices);
+
+    invoiceForm.reset();
+    submitButton.textContent = "Add Invoice";
+
+    renderInvoices();
+  };
+};
+
+window.markAsPaid = function (id) {
+  const invoice = invoices.find((i) => i.id === id);
+
+  if (!invoice) return;
+
+  invoice.paid = !invoice.paid;
+
+  saveToLocalStorage("invoices", invoices);
+
+  renderInvoices();
+};
+
+window.deleteInvoice = function (id) {
+  invoices = invoices.filter((invoice) => invoice.id !== id);
+
+  saveToLocalStorage("invoices", invoices);
+
+  renderInvoices();
+};
+
+// Function to populate the client dropdown list
+function populateClientSelect() {
+  clientSelect.innerHTML = '<option value="">Select a Client</option>';
+
+  clients.forEach((client) => {
+    const option = document.createElement("option");
+    option.value = client.id;
+    option.textContent = client.name;
+    clientSelect.appendChild(option);
+  });
+}
+
+// Initial population of client dropdown and render invoices
+populateClientSelect();
+renderInvoices();
