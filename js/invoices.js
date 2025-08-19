@@ -105,4 +105,9 @@ window.editInvoice = function (id) {
       invoice.date !== ""
     );
   });
+
+  saveToLocalStorage("invoices", invoices);
+
+  invoiceForm.reset();
+  submitButton.textContent = "Add Invoice";
 };
