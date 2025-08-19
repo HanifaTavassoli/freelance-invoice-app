@@ -133,3 +133,15 @@ window.deleteInvoice = function (id) {
 
   renderInvoices();
 };
+
+// Function to populate the client dropdown list
+function populateClientSelect() {
+  clientSelect.innerHTML = '<option value="">Select a Client</option>';
+
+  clients.forEach((client) => {
+    const option = document.createElement("option");
+    option.value = client.id;
+    option.textContent = client.name;
+    clientSelect.appendChild(option);
+  });
+}
