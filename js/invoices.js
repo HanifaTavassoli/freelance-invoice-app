@@ -13,3 +13,7 @@ const invoiceList = document
   .getElementById("invoice-list")
   .getElementsByTagName("tbody")[0];
 const clientSelect = document.getElementById("invoice-client");
+
+function renderInvoices() {
+  renderTableRows(invoices, invoiceList, createInvoiceRow);
+}
