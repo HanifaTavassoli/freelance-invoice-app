@@ -66,3 +66,6 @@ window.editInvoice = function (id) {
   document.getElementById("invoice-amount").value = invoiceToEdit.amount;
   document.getElementById("invoice-date").value = invoiceToEdit.date;
 };
+
+const submitButton = invoiceForm.querySelector('button[type="submit"]');
+submitButton.textContent = "Update Invoice";
