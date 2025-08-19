@@ -145,3 +145,7 @@ function populateClientSelect() {
     clientSelect.appendChild(option);
   });
 }
+
+// Initial population of client dropdown and render invoices
+populateClientSelect();
+renderInvoices();
