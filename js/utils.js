@@ -32,3 +32,31 @@ function createClientRow(client) {
 
   return row;
 }
+
+function createInvoiceRow(invoice) {
+  const row = document.createElement("tr");
+
+  const clientName = invoice.client ? invoice.client.name : "Unknown Client";
+
+  row.innerHTML = `
+    <td>${clientName}</td>
+    <td>${invoice.serviceTitle}</td>
+    <td>${invoice.description}</td>
+    <td>$${invoice.amount}</td>
+    <td>${invoice.date}</td>
+    <td>${invoice.paid ? "Paid" : "Unpaid"}</td>
+    <td>
+      <button class="btn btn-edit" onclick="editInvoice(${
+        invoice.id
+      })">Edit</button>
+      <button class="btn btn-delete" onclick="deleteInvoice(${
+        invoice.id
+      })">Delete</button>
+      <button class="btn" onclick="markAsPaid(${invoice.id})">
+        ${invoice.paid ? "Mark as Unpaid" : "Mark as Paid"}
+      </button>
+    </td>
+  `;
+
+  return row;
+}
