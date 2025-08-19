@@ -110,4 +110,6 @@ window.editInvoice = function (id) {
 
   invoiceForm.reset();
   submitButton.textContent = "Add Invoice";
+
+  renderInvoices();
 };
