@@ -125,3 +125,11 @@ window.markAsPaid = function (id) {
 
   renderInvoices();
 };
+
+window.deleteInvoice = function (id) {
+  invoices = invoices.filter((invoice) => invoice.id !== id);
+
+  saveToLocalStorage("invoices", invoices);
+
+  renderInvoices();
+};
