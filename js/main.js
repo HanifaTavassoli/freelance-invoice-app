@@ -26,3 +26,22 @@ function updateSummary() {
   paidCount.textContent = paidInvoices.length;
   // unpaidCount.textContent = unpaidInvoices.length;
 }
+
+async function loadQuote() {
+  try {
+    const response = await fetch("data/quotes.json");
+    const quotes = await response.json();
+    const randomIndex = Math.floor(Math.random() * quotes.length);
+    const quote = quotes[randomIndex];
+
+    quoteText.textContent = quote.text;
+    quoteAuthor.textContent = quote.author || "- Unknown";
+  } catch (error) {
+    console.error("Error fetching quote:", error);
+    quoteText.textContent = "“Stay positive, work hard, make it happen.”";
+    quoteAuthor.textContent = "- Unknown";
+  }
+}
+
+updateSummary();
+loadQuote();
