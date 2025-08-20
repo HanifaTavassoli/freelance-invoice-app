@@ -58,7 +58,34 @@
         </div>
       </nav>
     </header>
-
+    <main class="mt-5 pt-5">
+      <div class="container mt-6" style="min-height: 100vh">
+        <div class="row justify-content-center">
+          <div class="col-md-3 mb-3">
+            <div
+              class="card border-success text-center w-100"
+              id="client-summary"
+            >
+              <div class="card-header border-success">Total Clients</div>
+              <div class="card-body text-success">
+                <h5 class="card-title" id="client-count">0</h5>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-3 mb-3">
+            <div
+              class="card border-danger text-center w-100"
+              id="invoice-summary"
+            >
+              <div class="card-header border-danger">Total Invoices</div>
+              <div class="card-body text-danger">
+                <h5 class="card-title" id="invoice-count">0$</h5>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
     <script type="module" src="js/main.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
   </body>
