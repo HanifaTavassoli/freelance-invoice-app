@@ -57,7 +57,7 @@ function createInvoiceRow(invoice) {
    }; color: ${invoice.paid ? "#2c6b2f" : "#e36b00"}" onclick="markAsPaid(${
     invoice.id
   })">
-  ${invoice.paid ? "Mark as Unpaid" : "Mark as Paid"}
+  ${invoice.paid ? "Mark as Unpaid" : "Mark as wPaid"}
 </button>
 
 
