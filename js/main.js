@@ -10,7 +10,6 @@ const quoteText = document.getElementById("quote-text");
 const quoteAuthor = document.getElementById("quote-author");
 
 function updateSummary() {
-  console.log("client");
   clientCount.textContent = clients.length;
   invoiceCount.textContent = invoices.length;
 
