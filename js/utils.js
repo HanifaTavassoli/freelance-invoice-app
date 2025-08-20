@@ -44,17 +44,23 @@ function createInvoiceRow(invoice) {
     <td>${invoice.description}</td>
     <td>$${invoice.amount}</td>
     <td>${invoice.date}</td>
-    <td>${invoice.paid ? "Paid" : "Unpaid"}</td>
+    <td >${invoice.paid ? "PAID" : "UNPAID"}</td>
     <td>
       <button class="btn btn-edit" onclick="editInvoice(${
         invoice.id
-      })">Edit</button>
+      })"><i class="bi bi-pen text-success"></i></button>
       <button class="btn btn-delete" onclick="deleteInvoice(${
         invoice.id
-      })">Delete</button>
-      <button class="btn" onclick="markAsPaid(${invoice.id})">
-        ${invoice.paid ? "Mark as Unpaid" : "Mark as Paid"}
-      </button>
+      })"><i class="bi bi-x-circle text-danger"></i></button>
+   <button class="btn" style="background-color: ${
+     invoice.paid ? "#a2d8a8" : "#ffdab3"
+   }; color: ${invoice.paid ? "#2c6b2f" : "#e36b00"}" onclick="markAsPaid(${
+    invoice.id
+  })">
+  ${invoice.paid ? "Mark as Unpaid" : "Mark as wPaid"}
+</button>
+
+
     </td>
   `;
 

@@ -8,7 +8,122 @@
     <!-- <link rel="stylesheet" href="css/style.css" /> -->
   </head>
   <body>
-    <h1>Freelance Invoice App - Dashboard</h1>
-    <script type="module" src="js/main.js"></script>
+    <header>
+      <nav class="navbar bg-body-tertiary fixed-top">
+        <div class="container-fluid">
+          <button
+            class="navbar-toggler"
+            type="button"
+            data-bs-toggle="offcanvas"
+            data-bs-target="#offcanvasNavbar"
+            aria-controls="offcanvasNavbar"
+            aria-label="Toggle navigation"
+          >
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <a class="navbar-brand" href="#">Invoice App </a>
+          <div
+            class="offcanvas offcanvas-start"
+            tabindex="-1"
+            id="offcanvasNavbar"
+            aria-labelledby="offcanvasNavbarLabel"
+          >
+            <div class="offcanvas-header">
+              <h5 class="offcanvas-title" id="offcanvasNavbarLabel">
+                Client managment
+              </h5>
+              <button
+                type="button"
+                class="btn-close"
+                data-bs-dismiss="offcanvas"
+                aria-label="Close"
+              ></button>
+            </div>
+            <div class="offcanvas-body">
+              <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+                <li class="nav-item">
+                  <a class="nav-link active" aria-current="page" href="#"
+                    >Home</a
+                  >
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="clients.html">Clients</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="invoices.html">Invoices</a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+    <main class="mt-5 pt-5">
+      <div class="container mt-6" style="min-height: 100vh">
+        <div class="row justify-content-center">
+          <div class="col-md-3 mb-3">
+            <div
+              class="card border-success text-center w-100"
+              id="client-summary"
+            >
+              <div class="card-header border-success">Total Clients</div>
+              <div class="card-body text-success">
+                <h5 class="card-title" id="client-count">0</h5>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-3 mb-3">
+            <div
+              class="card border-danger text-center w-100"
+              id="invoice-summary"
+            >
+              <div class="card-header border-danger">Total Invoices</div>
+              <div class="card-body text-danger">
+                <h5 class="card-title" id="invoice-count">0$</h5>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="row justify-content-center">
+          <div class="col-md-3 mb-3">
+            <div class="card border-warning w-100 text-center">
+              <div class="card-header border-warning">Total Invoice Value</div>
+              <div class="card-body text-warning">
+                <h5 class="card-title" id="total-value">0</h5>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-3 mb-3">
+            <div class="card border-info text-center w-100">
+              <div class="card-header border-info">Paid Invoices:</div>
+              <div class="card-body text-info">
+                <h5 class="card-title" id="paid-count">0</h5>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="row mt-5">
+          <div class="col-12 d-flex justify-content-center">
+            <div class="card w-50">
+              <div class="card-header">Motivational Quote</div>
+              <div class="card-body" id="quote">
+                <figure>
+                  <blockquote class="blockquote">
+                    <p id="quote-text">Loading...</p>
+                  </blockquote>
+                  <figcaption class="blockquote-footer">
+                    <cite title="Source Title" id="quote-author">Unknown</cite>
+                  </figcaption>
+                </figure>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+    <script type="module" src="./js/main.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
   </body>
 </html>
